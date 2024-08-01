@@ -2,28 +2,25 @@ package com.music.music_system.music.domain;
 
 import com.music.music_system.common.domain.BaseEntity;
 import com.music.music_system.member.domain.Member;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
-
-@Builder
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-public class MusicSaveDto extends BaseEntity {
+@AllArgsConstructor
+@Builder
+public class MusicSaveDto{
     private String title;
     private String contents;
-    private String filePath;
-    private Member member;
+    private MultipartFile musicFile;
 
-    public Music toEntity(){
+    public Music toEntity(Member member){
         return Music.builder()
                 .title(this.title)
                 .contents(this.contents)
-                .filePath(filePath)
+                .member(member)
                 .build();
     }
 }

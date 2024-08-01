@@ -51,4 +51,8 @@ public class MemberService {
         Member member = memberSaveDto.toEntity(passwordEncoder.encode(memberSaveDto.getPassword()));
         return memberRepository.save(member).getEmail();
     }
+
+    public Member memberFindByEmail(String email, String n) {
+        return memberRepository.findByEmailAndDelYn(email, n).orElseThrow(()->new EntityNotFoundException("member not found"));
+    }
 }

@@ -37,4 +37,11 @@ public class Listening extends BaseEntity {
     @Column(nullable = false, columnDefinition = "char(1) default 'N'")
     private String isLike = "N";
 
+    public void updateCounting() {
+        this.counting += 1;
+    }
+
+    public void updateIsLike(String isLike) {
+        this.isLike = isLike;
+    }
 }
